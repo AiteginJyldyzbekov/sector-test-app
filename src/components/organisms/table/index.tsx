@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useMemo } from "react";
 import scss from "./Table.module.scss";
 import TableColumn from "components/atoms/table-column";
-import TextDisplay from "components/atoms/text-display";
 import ArrowBtn from "components/atoms/arrow-btn";
 import TableRow from "components/molecules/table-row";
+import { PostType } from "store/types";
 
-const Table: React.FC = () => {
+interface TableProps {
+  posts: PostType[];
+}
+
+const Table: React.FC<TableProps> = ({ posts }) => {
+  const renderPosts = useMemo(() => {
+    return posts?.map((post) => (
+      <TableRow
+        key={`${post.title}_${post.id}`}
+        id={post.id}
+        title={post.title}
+        body={post.body}
+      />
+    ));
+  }, [posts]);
+
   return (
     <div className={scss.wrapper}>
       <div className={scss.content__wrapper}>
@@ -33,7 +48,7 @@ const Table: React.FC = () => {
           </TableColumn>
         </div>
       </div>
-      <TableRow />
+      {renderPosts}
     </div>
   );
 };

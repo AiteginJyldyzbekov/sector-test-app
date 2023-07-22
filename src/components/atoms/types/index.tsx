@@ -9,5 +9,5 @@ export interface TableColumnProps {
 }
 
 export interface TextDisplayProps {
-  children: string;
+  children: string | number;
 }
