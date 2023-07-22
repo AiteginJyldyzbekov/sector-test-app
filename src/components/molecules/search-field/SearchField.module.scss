@@ -6,6 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 15px;
+  margin-top: 23px;
 
   input,
   button {
@@ -17,14 +19,16 @@
   .search__input {
     width: 100%;
     padding: 16px 26px;
-    color: #B2B7BF;;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
     padding-right: 0;
     &::placeholder {
-      color: #B2B7BF;
+      color: #b2b7bf;
     }
   }
 
-  .search__button{
+  .search__button {
     padding: 16px 24px;
     padding-left: 0;
     cursor: pointer;

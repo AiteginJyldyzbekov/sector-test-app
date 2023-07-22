@@ -1,0 +1,38 @@
+@import "../../../styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 41px 12px 41px;
+
+  .navigation__button {
+    text-decoration: none;
+    color: $mainGray;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .pagination {
+    display: flex;
+    gap: 10px;
+    .pagination__number_active {
+      text-decoration: none;
+      color: #7ebc3c;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 137.687%;
+    }
+
+    .pagination__number {
+      text-decoration: none;
+      color: $mainGray;
+      font-family: Roboto;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 137.687%;
+    }
+  }
+}

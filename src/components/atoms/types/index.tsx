@@ -3,11 +3,11 @@ export interface PreloaderProps {
 }
 
 export interface TableColumnProps {
-  className: string;
+  style: string;
   children: React.ReactNode;
+  variant: string;
 }
 
 export interface TextDisplayProps {
-  className: string;
   children: string;
 }

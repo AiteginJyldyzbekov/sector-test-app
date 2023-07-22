@@ -1,10 +1,13 @@
+import Pagination from "components/molecules/pagination";
 import SearchField from "components/molecules/search-field";
+import Table from "components/organisms/table";
 
 function HomePage() {
   return (
     <div className="container">
       <SearchField onSubmit='asd' placeholder="Search" />
-      Home page
+      <Table />
+      <Pagination />
     </div>
   );
 }
