@@ -1,0 +1,32 @@
+@import "../../../styles/variables.scss";
+
+.search__wrapper {
+  width: 631px;
+  background-color: $searchGray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input,
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+
+  .search__input {
+    width: 100%;
+    padding: 16px 26px;
+    color: #B2B7BF;;
+    padding-right: 0;
+    &::placeholder {
+      color: #B2B7BF;
+    }
+  }
+
+  .search__button{
+    padding: 16px 24px;
+    padding-left: 0;
+    cursor: pointer;
+  }
+}
