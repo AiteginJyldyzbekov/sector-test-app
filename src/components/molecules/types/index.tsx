@@ -9,3 +9,8 @@ export interface TableRowProps {
   title: string;
   body: string;
 }
+
+export interface PaginationProps {
+  totalPosts: number;
+  postsPerPage: number;
+}

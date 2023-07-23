@@ -10,16 +10,16 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ posts }) => {
-  const renderPosts = useMemo(() => {
-    return posts?.map((post) => (
+  const renderPosts = useMemo(() => (
+     posts.map((post) => (
       <TableRow
         key={`${post.title}_${post.id}`}
         id={post.id}
         title={post.title}
         body={post.body}
       />
-    ));
-  }, [posts]);
+    ))
+  ), [posts]);
 
   return (
     <div className={scss.wrapper}>

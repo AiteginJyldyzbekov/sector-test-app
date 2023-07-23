@@ -4,7 +4,7 @@ import HomePage from "./home-page";
 export const Routing = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/pages/:id" element={<HomePage />} />
     </Routes>
   );
 };
