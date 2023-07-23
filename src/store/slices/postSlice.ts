@@ -12,7 +12,21 @@ const initialState: InitialStateType = {
 const postSlice = createSlice({
   name: "post",
   initialState,
-  reducers: {},
+  reducers: {
+    sortById: (state) => {
+      state.posts.sort((a: { id: number }, b: { id: number }) => b.id - a.id);
+    },
+    sortByTitle: (state) => {
+      state.posts.sort((a: { title: string }, b: { title: string }) =>
+        a.title.localeCompare(b.title)
+      );
+    },
+    sortByBody: (state) => {
+      state.posts.sort((a: { body: string }, b: { body: string }) =>
+        a.body.localeCompare(b.body)
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.pending, (state) => {
       state.isLoading = LoadingStatus.pending;
@@ -25,7 +39,8 @@ const postSlice = createSlice({
       state.isLoading = LoadingStatus.failed;
       state.error = action.error as string;
     });
-  }
+  },
 });
 
+export const { sortById, sortByTitle, sortByBody } = postSlice.actions;
 export const postReducer = postSlice.reducer;

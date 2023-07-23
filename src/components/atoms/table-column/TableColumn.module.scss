@@ -1,6 +1,6 @@
 .head__column {
   border: 1px solid #e3e6ec;
-  min-height: 52px;
+  max-height: 52px;
   min-width: 90px;
   width: 100%;
   right: -1px;
@@ -8,7 +8,6 @@
   display: flex;
   align-items: center;
   padding: 14px 12px;
-  cursor: pointer;
 }
 
 .body__column {
