@@ -40,7 +40,13 @@ const Table: React.FC<TableProps> = ({ currentPosts }) => {
           >
             <div
               className={scss.column__container}
-              onClick={() => dispatch(sortById(searchData != null && searchData.length > 0 && "search"))}
+              onClick={() =>
+                dispatch(
+                  sortById(
+                    searchData != null && searchData.length > 0 && "search"
+                  )
+                )
+              }
             >
               <p>ID</p>
               <ArrowBtn />
@@ -52,7 +58,13 @@ const Table: React.FC<TableProps> = ({ currentPosts }) => {
           >
             <div
               className={scss.column__container}
-              onClick={() => dispatch(sortByTitle(searchData != null && searchData.length > 0 && "search"))}
+              onClick={() =>
+                dispatch(
+                  sortByTitle(
+                    searchData != null && searchData.length > 0 && "search"
+                  )
+                )
+              }
             >
               <p>Заголовок</p>
               <ArrowBtn />
@@ -64,7 +76,13 @@ const Table: React.FC<TableProps> = ({ currentPosts }) => {
           >
             <div
               className={scss.column__container}
-              onClick={() => dispatch(sortByBody(searchData != null && searchData.length > 0 && "search"))}
+              onClick={() =>
+                dispatch(
+                  sortByBody(
+                    searchData != null && searchData.length > 0 && "search"
+                  )
+                )
+              }
             >
               <p>Описание</p>
               <ArrowBtn />

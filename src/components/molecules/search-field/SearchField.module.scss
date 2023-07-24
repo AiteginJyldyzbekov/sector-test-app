@@ -1,13 +1,17 @@
 @import "../../../styles/variables.scss";
 
 .search__wrapper {
-  width: 631px;
+  width: 60%;
   background-color: $searchGray;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
   margin-top: 23px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   input,
   button {

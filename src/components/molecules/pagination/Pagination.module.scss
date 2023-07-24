@@ -5,11 +5,19 @@
   justify-content: space-between;
   padding: 16px 41px 12px 41px;
 
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
   .navigation__button {
     text-decoration: none;
     color: $mainGray;
     font-size: 24px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .pagination {
