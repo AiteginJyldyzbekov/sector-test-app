@@ -5,6 +5,7 @@ import { InitialStateType } from "store/types";
 
 const initialState: InitialStateType = {
   posts: [],
+  searchData: [],
   error: null,
   isLoading: LoadingStatus.idle,
 };
@@ -13,8 +14,19 @@ const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    sortById: (state) => {
-      state.posts.sort((a: { id: number }, b: { id: number }) => b.id - a.id);
+    setData: (state, action) => {
+      if (action.payload.length > 0) {
+        state.searchData = action.payload;
+      }else{
+        state.searchData = null
+      }
+    },
+    sortById: (state, action) => {
+      if(action.payload == "search" && state.searchData != null){
+        state.searchData.sort((a: { id: number }, b: { id: number }) => b.id - a.id);
+      }else{
+        state.posts.sort((a: { id: number }, b: { id: number }) => b.id - a.id);
+      }
     },
     sortByTitle: (state) => {
       state.posts.sort((a: { title: string }, b: { title: string }) =>
@@ -42,5 +54,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { sortById, sortByTitle, sortByBody } = postSlice.actions;
+export const { sortById, sortByTitle, sortByBody, setData } = postSlice.actions;
 export const postReducer = postSlice.reducer;

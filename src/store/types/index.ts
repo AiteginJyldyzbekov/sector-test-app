@@ -18,8 +18,8 @@ export interface PostType {
 }
 
 export interface InitialStateType {
-  [x: string]: any;
   posts: PostType[];
   isLoading: LoadingStatus | null;
   error: string | null;
+  searchData: PostType[] | null;
 }

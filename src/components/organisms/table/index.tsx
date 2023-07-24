@@ -4,18 +4,22 @@ import TableColumn from "components/atoms/table-column";
 import ArrowBtn from "components/atoms/arrow-btn";
 import TableRow from "components/molecules/table-row";
 import { PostType } from "store/types";
-import { useAppDispatch } from "helpers/reduxHooks";
+import { useAppDispatch, useAppSelector } from "helpers/reduxHooks";
 import { sortById, sortByTitle, sortByBody } from "store/slices/postSlice";
+import { RootState } from "store/index.";
 
 interface TableProps {
-  posts: PostType[];
+  currentPosts: PostType[] | [] | undefined;
 }
 
-const Table: React.FC<TableProps> = ({ posts }) => {
+const Table: React.FC<TableProps> = ({ currentPosts }) => {
   const dispatch = useAppDispatch();
+  const posts = useAppSelector((state: RootState) => state.posts);
+  const searchData = useAppSelector((state: RootState) => state.searchData);
+
   const renderPosts = useMemo(
     () =>
-      posts.map((post) => (
+      currentPosts?.map((post) => (
         <TableRow
           key={`${post.title}_${post.id}`}
           id={post.id}
@@ -23,7 +27,7 @@ const Table: React.FC<TableProps> = ({ posts }) => {
           body={post.body}
         />
       )),
-    [posts]
+    [currentPosts, posts, searchData]
   );
 
   return (
@@ -36,7 +40,7 @@ const Table: React.FC<TableProps> = ({ posts }) => {
           >
             <div
               className={scss.column__container}
-              onClick={() => dispatch(sortById())}
+              onClick={() => dispatch(sortById(searchData && "search"))}
             >
               <p>ID</p>
               <ArrowBtn />
