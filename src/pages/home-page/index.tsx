@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { useAppDispatch, useAppSelector } from "helpers/reduxHooks";
 import { useEffect } from "react";
 import { fetchPosts } from "store/asyncReducers";
@@ -17,14 +17,18 @@ function HomePage() {
 
   const posts = useAppSelector((state: RootState) => state.posts);
   const searchData = useAppSelector((state: RootState) => state.searchData);
+  //Get data from redux
 
   const { currentData, currentSearchedData, postsPerPage } = usePagination();
+  //Get variables from helper for pagination
 
   useEffect(() => {
     dispatch(fetchPosts());
+    //Get data
   }, []);
 
   return (
+    //Suspense for prealoder
     <Suspense fallback={<Preloader full />}>
       <div className="container">
         <SearchField placeholder="Search" />

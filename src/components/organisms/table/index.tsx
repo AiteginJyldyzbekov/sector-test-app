@@ -17,6 +17,7 @@ const Table: React.FC<TableProps> = ({ currentPosts }) => {
 
   const posts = useAppSelector((state: RootState) => state.posts);
   const searchData = useAppSelector((state: RootState) => state.searchData);
+  //Get data from redux
 
   const renderPosts = useMemo(
     () =>
@@ -30,6 +31,7 @@ const Table: React.FC<TableProps> = ({ currentPosts }) => {
       )),
     [currentPosts, posts, searchData]
   );
+  //Render data
 
   return (
     <div className={scss.wrapper}>
