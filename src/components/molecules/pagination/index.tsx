@@ -43,3 +43,4 @@ const Pagination: React.FC<PaginationProps> = ({
 };
 
 export default Pagination;
+

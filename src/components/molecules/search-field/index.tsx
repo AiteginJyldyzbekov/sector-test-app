@@ -7,11 +7,10 @@ import { RootState } from "store/index.";
 import { PostType } from "store/types";
 
 interface SearchFieldProps {
-  onSubmit: any;
   placeholder: string;
 }
 
-const SearchField: React.FC<SearchFieldProps> = ({ onSubmit, placeholder }) => {
+const SearchField: React.FC<SearchFieldProps> = ({ placeholder }) => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state: RootState) => state.posts);
   const [searchWord, setSearchWord] = useState("");
