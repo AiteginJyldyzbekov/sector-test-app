@@ -6,19 +6,15 @@ import { useAppDispatch, useAppSelector } from "helpers/reduxHooks";
 import { useEffect } from "react";
 import { fetchPosts } from "store/asyncReducers";
 import { RootState } from "store/index.";
-import { useNavigate, useParams } from "react-router-dom";
+import usePagination from "helpers/usePagination";
 
 function HomePage() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const posts = useAppSelector((state: RootState) => state.posts);
-  const { id }: any = useParams();
-  const [postsPerPage] = useState(10);
+  const searchData = useAppSelector((state: RootState) => state.searchData);
 
-  const lastCountry = id * postsPerPage;
-  const firstCountry = lastCountry - postsPerPage;
-  const currentCountry = posts.slice(firstCountry, lastCountry);
+  const { currentData, currentSearchedData, postsPerPage } = usePagination();
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -26,9 +22,24 @@ function HomePage() {
 
   return (
     <div className="container">
-      <SearchField onSubmit="asd" placeholder="Search" />
-      <Table posts={currentCountry} />
-      <Pagination totalPosts={posts.length} postsPerPage={postsPerPage} />
+      <SearchField placeholder="Search" />
+      <Table
+        currentPosts={
+          searchData != null && searchData.length > 0
+            ? currentSearchedData
+            : searchData != null && searchData.length <= 0
+            ? currentData
+            : []
+        }
+      />
+      <Pagination
+        totalPosts={
+          searchData != null && searchData.length > 0
+            ? searchData.length
+            : posts.length
+        }
+        postsPerPage={postsPerPage}
+      />
     </div>
   );
 }
