@@ -23,3 +23,8 @@ export interface InitialStateType {
   error: string | null;
   searchData: PostType[] | null;
 }
+
+
+export interface RouteParams {
+  id: number | string;
+}

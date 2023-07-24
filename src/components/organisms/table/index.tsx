@@ -9,11 +9,12 @@ import { sortById, sortByTitle, sortByBody } from "store/slices/postSlice";
 import { RootState } from "store/index.";
 
 interface TableProps {
-  currentPosts: PostType[] | [] | undefined;
+  currentPosts: PostType[] | undefined;
 }
 
 const Table: React.FC<TableProps> = ({ currentPosts }) => {
   const dispatch = useAppDispatch();
+
   const posts = useAppSelector((state: RootState) => state.posts);
   const searchData = useAppSelector((state: RootState) => state.searchData);
 

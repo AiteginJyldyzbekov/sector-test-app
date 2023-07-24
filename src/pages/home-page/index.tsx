@@ -1,12 +1,16 @@
-import React, { Suspense, lazy, useState } from "react";
-import Pagination from "components/molecules/pagination";
-import Table from "components/organisms/table";
-import SearchField from "components/molecules/search-field";
+import React, { Suspense, lazy } from "react";
 import { useAppDispatch, useAppSelector } from "helpers/reduxHooks";
 import { useEffect } from "react";
 import { fetchPosts } from "store/asyncReducers";
 import { RootState } from "store/index.";
 import usePagination from "helpers/usePagination";
+import Preloader from "components/atoms/preloader";
+//Simple imports
+
+const Pagination = lazy(() => import("components/molecules/pagination"));
+const Table = lazy(() => import("components/organisms/table"));
+const SearchField = lazy(() => import("components/molecules/search-field"));
+//Lazy load imports
 
 function HomePage() {
   const dispatch = useAppDispatch();
@@ -21,26 +25,28 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="container">
-      <SearchField placeholder="Search" />
-      <Table
-        currentPosts={
-          searchData != null && searchData.length > 0
-            ? currentSearchedData
-            : searchData != null && searchData.length <= 0
-            ? currentData
-            : []
-        }
-      />
-      <Pagination
-        totalPosts={
-          searchData != null && searchData.length > 0
-            ? searchData.length
-            : posts.length
-        }
-        postsPerPage={postsPerPage}
-      />
-    </div>
+    <Suspense fallback={<Preloader full />}>
+      <div className="container">
+        <SearchField placeholder="Search" />
+        <Table
+          currentPosts={
+            searchData != null && searchData.length > 0
+              ? currentSearchedData
+              : searchData != null && searchData.length <= 0
+              ? currentData
+              : []
+          }
+        />
+        <Pagination
+          totalPosts={
+            searchData != null && searchData.length > 0
+              ? searchData.length
+              : posts.length
+          }
+          postsPerPage={postsPerPage}
+        />
+      </div>
+    </Suspense>
   );
 }
 

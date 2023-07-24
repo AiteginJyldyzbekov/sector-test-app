@@ -2,12 +2,13 @@ import { useMemo } from "react";
 import { PaginationProps } from "../types";
 import scss from "./Pagination.module.scss";
 import { Link, useParams } from "react-router-dom";
+import { RouteParams } from "store/types";
 
 const Pagination: React.FC<PaginationProps> = ({
   totalPosts,
   postsPerPage,
 }) => {
-  const { id }: any = useParams();
+  const { id } = useParams() as unknown as RouteParams;
 
   const renderPagination = useMemo(() => {
     const pageNum = [];
@@ -31,11 +32,17 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className={scss.wrapper}>
-      <Link to={id != 1 ? `/pages/${+id - 1}` : '/pages/1'} className={scss.navigation__button}>
+      <Link
+        to={id != 1 ? `/pages/${+id - 1}` : "/pages/1"}
+        className={scss.navigation__button}
+      >
         Назад
       </Link>
       <div className={scss.pagination}>{renderPagination}</div>
-      <Link to={id != 10 ? `/pages/${+id + 1}` : '/pages/10'} className={scss.navigation__button}>
+      <Link
+        to={id != 10 ? `/pages/${+id + 1}` : "/pages/10"}
+        className={scss.navigation__button}
+      >
         Вперед
       </Link>
     </div>
@@ -43,4 +50,3 @@ const Pagination: React.FC<PaginationProps> = ({
 };
 
 export default Pagination;
-

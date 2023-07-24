@@ -4,15 +4,19 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "helpers/reduxHooks";
 import { setData } from "store/slices/postSlice";
 import { RootState } from "store/index.";
-import { PostType } from "store/types";
+import { useNavigate } from "react-router-dom";
 
 interface SearchFieldProps {
   placeholder: string;
 }
 
 const SearchField: React.FC<SearchFieldProps> = ({ placeholder }) => {
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const posts = useAppSelector((state: RootState) => state.posts);
+
   const [searchWord, setSearchWord] = useState("");
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +40,7 @@ const SearchField: React.FC<SearchFieldProps> = ({ placeholder }) => {
       });
       setTimeout(() => {
         dispatch(setData(filtered));
+        navigate("/pages/1")
       }, 500);
     }
   }, [searchWord, dispatch]);
