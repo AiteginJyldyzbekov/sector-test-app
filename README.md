@@ -1,5 +1,5 @@
 ## Деплой
-[Click] (sector-test-7sfrinui0-improove3567.vercel.app)
+[Click] (http://sector-test-7sfrinui0-improove3567.vercel.app)
 
 # Readme для тестового задания Сектор Бизнеса
 
