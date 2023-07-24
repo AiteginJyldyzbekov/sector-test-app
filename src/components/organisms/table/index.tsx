@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import scss from "./Table.module.scss";
 import TableColumn from "components/atoms/table-column";
 import ArrowBtn from "components/atoms/arrow-btn";
@@ -9,10 +9,30 @@ import { sortById, sortByTitle, sortByBody } from "store/slices/postSlice";
 
 interface TableProps {
   posts: PostType[];
+  searchingWord: string;
 }
 
-const Table: React.FC<TableProps> = ({ posts }) => {
+const Table: React.FC<TableProps> = ({ posts, searchingWord }) => {
   const dispatch = useAppDispatch();
+  const [postsState, setPostsState] = useState(posts)
+
+  const searchBy = (element: string | number, word: string) => {
+    return element.toString().toLowerCase().includes(word.toLowerCase());
+  };
+
+  useEffect(() => {
+    if (posts.length) {
+      const filtered = posts.filter((el) => {
+        return (
+          searchBy(el.id, searchingWord) ||
+          searchBy(el.title, searchingWord) ||
+          searchBy(el.body, searchingWord)
+        );
+      });
+      setPostsState(filtered);
+    }
+  }, [posts, searchingWord]);
+
   const renderPosts = useMemo(
     () =>
       posts.map((post) => (

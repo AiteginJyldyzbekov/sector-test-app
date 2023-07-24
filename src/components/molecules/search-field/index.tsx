@@ -3,14 +3,17 @@ import scss from "./SearchField.module.scss";
 import { useState } from "react";
 
 interface SearchFieldProps {
-  onSubmit: any;
+  submit: any;
   placeholder: string;
 }
 
-const SearchField: React.FC<SearchFieldProps> = ({ onSubmit, placeholder }) => {
+const SearchField: React.FC<SearchFieldProps> = ({ submit, placeholder }) => {
   const [searchWord, setSearchWord] = useState("");
 
-  const submitHandler = () => {};
+  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    submit(searchWord)
+  };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value);
